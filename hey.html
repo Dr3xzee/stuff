@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        #chat-container {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+        }
+        #messages {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .message {
+            margin: 5px 0;
+        }
+        .user {
+            color: rgb(255, 0, 85);
+            text-align: right;
+        }
+        .bot {
+            color: rgb(0, 77, 128);
+            text-align: left;
+        }
+        #user-input {
+            width: calc(100% - 80px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #send-button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #1eff00;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat-container">
+    <div id="messages"></div>
+    <input type="text" id="user-input" placeholder="Type your message..." />
+    <button id="send-button">hit me pablo</button>
+</div>
+
+<script>
+    let names = prompt("What's your name?"); // Ask and store the name
+    alert("welcome.............." + names); // Display the stored name
+    document.getElementById('send-button').addEventListener('click', function() {
+        const userInput = document.getElementById('user-input');
+        const userMessage = userInput.value;
+        if (userMessage.trim() !== '') {
+            addMessage(userMessage, 'user');
+            userInput.value = '';
+            setTimeout(() => {
+                const botReply = getBotResponse(userMessage);
+                addMessage(botReply, 'bot');
+            }, 1000);
+        }
+    });
+
+    function addMessage(message, sender) {
+        const messagesDiv = document.getElementById('messages');
+        const messageDiv = document.createElement('div');
+        messageDiv.textContent = message;
+        messageDiv.className = `message ${sender}`;
+        messagesDiv.appendChild(messageDiv);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto scroll
+    }
+
+    function getBotResponse(userMessage) {
+        // Simple bot responses
+        const lowerMessage = userMessage.toLowerCase();
+        if (lowerMessage.includes('whose ur father')) {
+            return "SIR DEREK OBIDU , FOUNDER OF WHO CARES ASSOCIATION";
+        }
+        if (lowerMessage.includes('u do math')) {
+            return "hell nah ";
+        }
+        if (lowerMessage.includes('what is biochemistry')) {
+            return "i dont do that shit bruh";
+        }
+        if (lowerMessage.includes('what is anatomy')) {
+            return "does it relate to nyash?";
+        }
+        if (lowerMessage.includes('no')) {
+            return "oh my bad";
+        }
+        if (lowerMessage.includes('yes')) {
+            return "darn i dont think i know it";
+        }
+        if (lowerMessage.includes('hi')) {
+            return "Hi there! How can I assist you today?";
+        }
+
+        if (lowerMessage.includes('i need help')) {
+            return "with.....?";
+        }
+        if (lowerMessage.includes('homework')) {
+            return "oh ok im listening";
+        }
+        
+        if (lowerMessage.includes('hello')) {
+            return "Hi there! How can I assist you today?";
+        } else if (lowerMessage.includes('help')) {
+            return "Sure! What do you need help with?";
+        } else {
+            return "nah bro i dont know but u sure i know this (yes / no)?";
+        }
+    }
+</script>
+
+</body>
+</html>
